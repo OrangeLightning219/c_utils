@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <stdint.h>
+
 #define global_variable static
 #define local_persist   static
 #define internal        static
