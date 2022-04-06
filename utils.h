@@ -3,10 +3,12 @@
 
 #include <stdint.h>
 
-#define global_variable static
-#define local_persist   static
-#define internal        static
-#define pi32            3.14159265359f
+#define global_variable               static
+#define local_persist                 static
+#define internal                      static
+#define pi32                          3.14159265359f
+#define DEGREES_TO_RADIANS( degrees ) degrees *pi32 / 180.0f
+#define RADIANS_TO_DEGREES( radians ) radians * 180.0f / pi32
 
 typedef int8_t s8;
 typedef uint8_t u8;
