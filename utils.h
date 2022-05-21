@@ -43,6 +43,54 @@ typedef double float64;
 #define CONCAT_INTERNAL( x, y ) x##y
 #define CONCAT( x, y )          CONCAT_INTERNAL( x, y )
 
+inline u32 SafeTruncateU64( u64 value )
+{
+    Assert( value <= 0xFFFFFFFF );
+    return ( u32 ) value;
+}
+
+void ConcatenateStrings( char *sourceA, int countA, char *sourceB, int countB, //NOLINT
+                         char *destination )
+{
+    for ( int index = 0; index < countA; ++index )
+    {
+        *destination++ = *sourceA++;
+    }
+    for ( int index = 0; index < countB; ++index )
+    {
+        *destination++ = *sourceB++;
+    }
+    *destination++ = '\0';
+}
+
+int StringLength( char *string ) //NOLINT
+{
+    int length = 0;
+    while ( *string++ )
+    {
+        ++length;
+    }
+    return length;
+}
+
+bool IsWhitespace( char a ) //NOLINT
+{
+    return a == ' ' || a == '\t' || a == '\v' || a == '\f' || a == '\n' || a == '\r';
+}
+
+bool StringsAreEqual( char *a, u64 aLength, char *b ) //NOLINT
+{
+    char *at = b;
+    for ( u64 index = 0; index < aLength; ++index, ++at )
+    {
+        if ( *at == 0 || a[ index ] != *at )
+        {
+            return false;
+        }
+    }
+    return *at == 0;
+}
+
 #ifdef __cplusplus
 
 template< typename T >
